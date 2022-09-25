@@ -15,7 +15,7 @@ MonoBehaviour:
   order: 1
   isUnlockedAtFirst: 0
   title: new one
-  description: 
+  description: the second one
   location: {fileID: 0}
   objectives:
     CollectObjectives: []

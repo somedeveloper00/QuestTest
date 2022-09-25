@@ -6,6 +6,12 @@ namespace QuestSystem
     public class QuestUnlockReward : Reward
     {
         public Quest unlockingQuest;
-        public override string DisplayName => "Mession Unlock";
+        public override string DisplayName => "Quest Unlock";
+        
+        public override void GetReward()
+        {
+            unlockingQuest.Unlock();
+        }
+
     }
 }

@@ -6,5 +6,7 @@ namespace QuestSystem
     public abstract class Reward
     {
         public abstract string DisplayName { get; }
+
+        public abstract void GetReward();
     }
 }

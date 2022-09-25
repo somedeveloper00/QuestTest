@@ -7,5 +7,10 @@ namespace QuestSystem
     {
         public string FeatureName;
         public override string DisplayName => "Feature Unlock";
+        public override void GetReward()
+        {
+            // throw new NotImplementedException();
+        }
+
     }
 }

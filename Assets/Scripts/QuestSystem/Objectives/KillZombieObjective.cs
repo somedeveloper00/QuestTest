@@ -5,11 +5,30 @@ namespace QuestSystem
     [Serializable]
     public class KillZombieObjective : Objective
     {
-        public override string DisplayTitle => "Kill Zombies";
+        [NonSerialized] public int killed;
+        public int amount;
 
-        public override void Start(Action onComplete)
+        private Action _onUpdate, _onComplete;
+        private Context _context;
+
+        public override void Start(Context context, Action onUpdate, Action onComplete)
         {
-            throw new NotImplementedException();
+            _context = context;
+            context.zombieManager.onKill += Update;
+            _onUpdate += onUpdate;
+            _onComplete = onComplete;
         }
+        
+        void Update()
+        {
+            killed++;
+            _onUpdate?.Invoke();
+            if (killed >= amount)
+            {
+                _onComplete?.Invoke();
+                _context.zombieManager.onKill -= Update;
+            }
+        }
+
     }
 }

@@ -87,10 +87,10 @@ namespace Editor.QuestsEditor
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            var CoinRewardsProp = property.FindPropertyRelative(nameof(Rewards.CoinRewards));
-            var FeatureUnlockRewardsProp = property.FindPropertyRelative(nameof(Rewards.FeatureUnlockRewards));
-            var MaterialRewardsProp = property.FindPropertyRelative(nameof(Rewards.MaterialRewards));
-            var MissionUnlockRewardsProp = property.FindPropertyRelative(nameof(Rewards.MissionUnlockRewards));
+            var CoinRewardsProp = property.FindPropertyRelative("CoinRewards");
+            var FeatureUnlockRewardsProp = property.FindPropertyRelative("FeatureUnlockRewards");
+            var MaterialRewardsProp = property.FindPropertyRelative("MaterialRewards");
+            var MissionUnlockRewardsProp = property.FindPropertyRelative("MissionUnlockRewards");
 
             using (new EditorGUI.PropertyScope(position, label, property))
             {
@@ -111,10 +111,10 @@ namespace Editor.QuestsEditor
         }
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            var CoinRewardsProp = property.FindPropertyRelative(nameof(Rewards.CoinRewards));
-            var FeatureUnlockRewardsProp = property.FindPropertyRelative(nameof(Rewards.FeatureUnlockRewards));
-            var MaterialRewardsProp = property.FindPropertyRelative(nameof(Rewards.MaterialRewards));
-            var MissionUnlockRewardsProp = property.FindPropertyRelative(nameof(Rewards.MissionUnlockRewards));
+            var CoinRewardsProp = property.FindPropertyRelative("CoinRewards");
+            var FeatureUnlockRewardsProp = property.FindPropertyRelative("FeatureUnlockRewards");
+            var MaterialRewardsProp = property.FindPropertyRelative("MaterialRewards");
+            var MissionUnlockRewardsProp = property.FindPropertyRelative("MissionUnlockRewards");
 
             // foldout
             float height = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;

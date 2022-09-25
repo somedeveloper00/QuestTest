@@ -7,5 +7,11 @@ namespace QuestSystem
     {
         public string MaterialName;
         public override string DisplayName => "Material";
+        
+        public override void GetReward()
+        {
+            // throw new NotImplementedException();
+        }
+
     }
 }

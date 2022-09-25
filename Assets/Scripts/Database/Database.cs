@@ -28,13 +28,13 @@ namespace Database
         public static void SaveBool(string key, bool value) => Save(key, value.ToString());
         public static void SaveString(string key, string value) => Save(key, value);
 
-        public static void SaveData<T>(ISavableData<T> savableData) =>
+        public static void SaveData(ISavableData savableData) =>
             Save(savableData.GetDatabaseKey(), savableData.ToDatabaseString());
         
-        public static void LoadData<T>(ISavableData<T> savableData)
+        public static void LoadData(ISavableData savableData)
         {
             var key = savableData.GetDatabaseKey();
-            if(Has(key)) savableData.ParseDatabaseString(Load(key));
+            if(Has(key)) savableData.LoadFromDatabase(Load(key));
         }
     }
 }
