@@ -1,16 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace QuestSystem
 {
     [Serializable]
     public class CollectObjective : Objective
     {
-        public string collectible;
+        public Collectible collectible;
+        public int collected;
         public int amount;
 
-        public override void Start(Action onUpdate, Action onComplete)
+        private Action _onUpdate, _onComplete;
+
+        public override void Start(Context context, Action onUpdate, Action onComplete)
         {
-            throw new NotImplementedException();
+            _onUpdate = onUpdate;
+            _onComplete = onComplete;
+            Update();
+            collectible.onCollect += Update;
+        }
+
+        private void Update()
+        {
+            collected++;
+            _onUpdate?.Invoke();
+            if (collected >= amount)
+            {
+                _onComplete?.Invoke();
+                collectible.onCollect -= Update;
+            }
         }
     }
 }

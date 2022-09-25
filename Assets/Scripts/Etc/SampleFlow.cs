@@ -6,12 +6,12 @@ public class SampleFlow : MonoBehaviour
 {
     public Context context;
     public QuestSelector questSelectorPrefab;
-    public QuestPanel questPanelPrefab;
+    public QuestInfoPanel questInfoPanelPrefab;
     public GameObject completeQuestButton;
     public GameObject questSelectorButton;
     public Transform UI;
 
-    private QuestPanel _questPanel;
+    private QuestInfoPanel _questInfoPanel;
         
     public void OpenQuestSelector()
     {
@@ -24,13 +24,13 @@ public class SampleFlow : MonoBehaviour
     public void AfterQuestSelected()
     {
         completeQuestButton.SetActive(true);
-        _questPanel = Instantiate(questPanelPrefab, UI);
-        _questPanel.Init(context);
+        _questInfoPanel = Instantiate(questInfoPanelPrefab, UI);
+        _questInfoPanel.Init(context);
     }
 
     public void CompleteQuest()
     {
-        Destroy(_questPanel.gameObject);
+        Destroy(_questInfoPanel.gameObject);
         completeQuestButton.SetActive(false);
         context.questManager.CompleteCurrentQuest();
         questSelectorButton.SetActive(true);

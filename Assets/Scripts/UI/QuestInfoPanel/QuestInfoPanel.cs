@@ -1,19 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using QuestSystem;
 using TMPro;
 using UnityEngine;
 
 namespace UI.QuestInfoPanel
 {
-    public class QuestPanel : MonoBehaviour
+    public class QuestInfoPanel : MonoBehaviour
     {
-        public Context context;
+        [NonSerialized] public Context context;
         public TMP_Text questTitle;
-        public ObjectiveElement objectiveElementPrefab;
+        public ObjectiveElementsDict objectiveElementsDict;
         public Transform objectiveElementParent;
 
         private QuestManager _questManager;
-        private List<ObjectiveElement> _objectiveElements = new List<ObjectiveElement>();
+        private readonly List<ObjectiveElement> _objectiveElements = new();
 
         public void Init(Context context)
         {
@@ -25,8 +26,9 @@ namespace UI.QuestInfoPanel
                 questTitle.text = currentState.currentQuest.title;
                 foreach (var objective in currentState.objectives)
                 {
-                    var objectiveElemenent = Instantiate(objectiveElementPrefab, objectiveElementParent);
-                    objectiveElemenent.Init(objective);
+                    var prefab = objectiveElementsDict.GetElementPrefab(objective);
+                    var objectiveElemenent = Instantiate(prefab, objectiveElementParent);
+                    objectiveElemenent.Init(context, objective);
                     _objectiveElements.Add(objectiveElemenent);
                 }
             }
