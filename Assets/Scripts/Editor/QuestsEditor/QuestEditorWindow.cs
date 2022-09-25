@@ -58,11 +58,20 @@ namespace Editor.QuestsEditor
                     .Select(guid => AssetDatabase.LoadAssetAtPath<QuestsHolder>(AssetDatabase.GUIDToAssetPath(guid)))
                     .ToArray();
 
-            // normalize orders
+            // validate quests
             foreach (var questsHolder in QuestEditorData.questsHolders)
             {
                 for (int i = 0; i < questsHolder.quests?.Length; i++)
                 {
+                    if (questsHolder.quests[i] == null)
+                    {
+                        // remove element
+                        var tmp = questsHolder.quests.ToList();
+                        tmp.RemoveAt(i);
+                        questsHolder.quests = tmp.ToArray();
+                        i--;
+                        continue;
+                    }
                     questsHolder.quests[i].order = i;
                 }
             }

@@ -22,7 +22,6 @@ namespace Editor.QuestsEditor
             using (new GUILayout.VerticalScope(EditorStyles.helpBox, GUILayout.ExpandWidth(true)))
             {
                 DrawQuestsList();
-                GUILayout.FlexibleSpace();
                 DrawBottomButtons();
             }
         }
@@ -53,7 +52,7 @@ namespace Editor.QuestsEditor
                 using (new EditorGUI.DisabledScope(QuestEditorData.quests?.Length == 0))
                 {
                     if (GUILayout.Button("Remove Selected Quest")) DeleteSelectedQuest();
-                    if (GUILayout.Button("Update File names")) UpdateFileNames(); 
+                    if (GUILayout.Button("Update File names")) UpdateFileNames();
                 }
             }
         }
@@ -94,23 +93,42 @@ namespace Editor.QuestsEditor
 
         private static void CreateNewQuest()
         {
-            // save holder
             var questsHolder = QuestEditorData.questsHolders[QuestEditorData.SelectedQuestHolderIndex];
-            AssetDatabase.SaveAssetIfDirty(questsHolder);
 
-            // new quest
+            // create directory
+            var assetPath = AssetDatabase.GetAssetPath(questsHolder);
+            var directory = assetPath.Substring(0, assetPath.LastIndexOf("/"));
+            var questDir = directory + "/" + questsHolder.name + "Quests";
+            if (!AssetDatabase.IsValidFolder(questDir))
+            {
+                AssetDatabase.CreateFolder(directory, questsHolder.name + "Quests");
+                AssetDatabase.Refresh();
+            }
+
+            // create asset
             var quest = ScriptableObject.CreateInstance<Quest>();
             quest.order = questsHolder.quests.Length;
-            quest.name = $"Quest{quest.order}";
-            AssetDatabase.AddObjectToAsset(quest, questsHolder);
-            AssetDatabase.SaveAssetIfDirty(questsHolder);
-
-            // add new quest to holder
-            var list = questsHolder.quests.ToList();
-            list.Add(quest);
-            questsHolder.quests = list.ToArray();
-
+            
+            // save asset
+            var path = EditorUtility.SaveFilePanel(
+                "New Quest", 
+                $"{questDir}",
+                $"Quest{questsHolder.quests.Length}.asset", 
+                "asset");
+            path = path.Replace(Application.dataPath, "Assets/");
+            if (string.IsNullOrWhiteSpace(path)) 
+                return;
+            AssetDatabase.CreateAsset(quest, path);
             AssetDatabase.Refresh();
+            
+            // add quest to questHolder's list
+            AssetDatabase.SaveAssetIfDirty(questsHolder);
+            var serObj = new SerializedObject(questsHolder);
+            var questsProp = serObj.FindProperty(nameof(questsHolder.quests));
+            questsProp.arraySize++;
+            questsProp.GetArrayElementAtIndex(questsProp.arraySize - 1).objectReferenceValue = quest;
+            serObj.ApplyModifiedProperties();
+
             QuestEditorWindow.RefreshData();
         }
 
@@ -118,7 +136,7 @@ namespace Editor.QuestsEditor
         {
             var questsHolder = QuestEditorData.questsHolders[QuestEditorData.SelectedQuestHolderIndex];
             var quest = QuestEditorData.quests?[QuestEditorData.SelectedQuestIndex];
-            
+
             Object.DestroyImmediate(quest, true);
             AssetDatabase.SaveAssetIfDirty(questsHolder);
 
@@ -142,7 +160,7 @@ namespace Editor.QuestsEditor
             GUILayout.Space(2);
 
             if (QuestEditorData.quests != null)
-                using (var scroll = new GUILayout.ScrollViewScope(listPos))
+                using (var scroll = new GUILayout.ScrollViewScope(listPos, GUILayout.ExpandHeight(true)))
                 {
                     var quests = QuestEditorData.quests;
                     for (var i = 0; i < quests.Length; i++)

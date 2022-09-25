@@ -13,31 +13,5 @@ MonoBehaviour:
   m_Name: MainQuests
   m_EditorClassIdentifier: 
   quests:
-  - {fileID: 6926289542423353157}
---- !u!114 &6926289542423353157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96f9776847643ef902ac7d5d31a1c47, type: 3}
-  m_Name: Quest0
-  m_EditorClassIdentifier: 
-  order: 0
-  isUnlockedAtFirst: 0
-  title: initial quest
-  description: the very first quest!
-  location: {fileID: 0}
-  objectives:
-    CollectObjectives: []
-    KillZombieObjectives: []
-    DefendAPositionObjectives: []
-  rewards:
-    CoinRewards:
-    - CoinAmount: 1000
-    FeatureUnlockRewards: []
-    MaterialRewards: []
-    MissionUnlockRewards: []
+  - {fileID: 11400000, guid: a9d7b589d5431bb40aedd8fc80cac24d, type: 2}
+  - {fileID: 11400000, guid: 52f387e0537346645b74f744768dbf9d, type: 2}
