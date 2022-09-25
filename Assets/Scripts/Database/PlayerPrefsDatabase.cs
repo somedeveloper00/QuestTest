@@ -1,12 +1,23 @@
 ﻿using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace Database
 {
     public class PlayerPrefsDatabase : Database
     {
 
+#if UNITY_EDITOR
+        [InitializeOnLoadMethod]
+#endif
         [RuntimeInitializeOnLoadMethod]
-        static void Init() => Instance = new PlayerPrefsDatabase();
+        static void Init()
+        {
+            Debug.Log("Database setup.");
+            Instance = new PlayerPrefsDatabase();
+        }
 
         protected override bool has(string key)
         {

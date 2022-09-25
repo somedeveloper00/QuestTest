@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using QuestSystem;
+using UnityEngine;
 
-namespace QuestSystem.UI
+namespace UI.QuestInfoPanel
 {
     public class ObjectiveElement : MonoBehaviour
     {
@@ -8,10 +9,11 @@ namespace QuestSystem.UI
 
         public TMPro.TMP_Text detailsText;
 
-        public void Init(Objective objective)
+        public virtual void Init(Objective objective)
         {
             this.objective = objective;
-            detailsText.text = objective.DisplayTitle;
+            detailsText.text = objective.ToString();
+            objective.Start(null, null);
         }
     }
 }

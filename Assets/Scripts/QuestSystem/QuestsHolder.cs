@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Interfaces;
+using UnityEngine;
 
 namespace QuestSystem
 {
@@ -9,5 +11,18 @@ namespace QuestSystem
     public class QuestsHolder : ScriptableObject
     {
         public Quest[] quests;
+
+        private void OnValidate()
+        {
+            for (int i = 0; i < quests.Length; i++)
+            {
+                quests[i].order = i;
+            }
+        }
+
+        public void SyncAll()
+        {
+            foreach (var quest in quests) quest.Sync();
+        }
     }
 }

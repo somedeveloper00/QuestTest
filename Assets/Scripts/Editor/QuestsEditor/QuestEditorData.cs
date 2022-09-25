@@ -7,6 +7,8 @@ namespace Editor.QuestsEditor
     {
         public static QuestsHolder[] questsHolders;
 
+        public static QuestsHolder SelectedQuestHolder => questsHolders?[SelectedQuestHolderIndex];
+
         private static int selectedQuestHolderIndex;
 
         public static int SelectedQuestHolderIndex

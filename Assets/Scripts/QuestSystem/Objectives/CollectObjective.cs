@@ -5,9 +5,10 @@ namespace QuestSystem
     [Serializable]
     public class CollectObjective : Objective
     {
-        public override string DisplayTitle => "Collect Objects";
+        public string collectible;
+        public int amount;
 
-        public override void Start(Action onComplete)
+        public override void Start(Action onUpdate, Action onComplete)
         {
             throw new NotImplementedException();
         }

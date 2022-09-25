@@ -9,5 +9,9 @@ namespace QuestSystem
         [Min(0)] public long CoinAmount;
 
         public override string DisplayName => "Coin";
+        public override void GetReward()
+        {
+            // throw new NotImplementedException();
+        }
     }
 }

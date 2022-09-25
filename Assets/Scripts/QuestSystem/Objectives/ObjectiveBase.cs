@@ -5,7 +5,6 @@ namespace QuestSystem
     [Serializable]
     public abstract class Objective
     {
-        public abstract string DisplayTitle { get; }
-        public abstract void Start(Action onComplete);
+        public abstract void Start(Action onUpdate, Action onComplete);
     }
 }

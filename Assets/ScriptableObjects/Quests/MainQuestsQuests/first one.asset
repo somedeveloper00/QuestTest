@@ -13,16 +13,21 @@ MonoBehaviour:
   m_Name: first one
   m_EditorClassIdentifier: 
   order: 0
-  isUnlockedAtFirst: 0
+  isUnlockedAtFirst: 1
   title: first one
-  description: 
-  location: {fileID: 0}
+  description: The first quest
+  location: {fileID: 11400000, guid: fe061d5dac169cb4eab4e10f76795e70, type: 2}
   objectives:
-    CollectObjectives: []
-    KillZombieObjectives: []
+    CollectObjectives:
+    - collectible: Mushrooms
+      amount: 25
+    KillZombieObjectives:
+    - amount: 100
     DefendAPositionObjectives: []
   rewards:
-    CoinRewards: []
+    CoinRewards:
+    - CoinAmount: 220
     FeatureUnlockRewards: []
     MaterialRewards: []
-    MissionUnlockRewards: []
+    MissionUnlockRewards:
+    - unlockingQuest: {fileID: 11400000, guid: 52f387e0537346645b74f744768dbf9d, type: 2}

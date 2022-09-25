@@ -59,16 +59,30 @@ namespace Editor.QuestsEditor
 
         private static void MoveSelectedQuestUp()
         {
-            QuestEditorData.quests[QuestEditorData.SelectedQuestIndex].order--;
-            QuestEditorData.quests[QuestEditorData.SelectedQuestIndex - 1].order++;
+            var questsHolder = QuestEditorData.SelectedQuestHolder;
+            AssetDatabase.SaveAssetIfDirty(questsHolder);
+            Undo.RecordObject(questsHolder, "quest moved up");
+
+            (QuestEditorData.quests[QuestEditorData.SelectedQuestIndex],
+                    QuestEditorData.quests[QuestEditorData.SelectedQuestIndex - 1]) =
+                (QuestEditorData.quests[QuestEditorData.SelectedQuestIndex - 1],
+                    QuestEditorData.quests[QuestEditorData.SelectedQuestIndex]);
+
             QuestEditorData.SelectedQuestIndex--;
             QuestEditorWindow.RefreshData();
         }
 
         private static void MoveSelectedQuestDown()
         {
-            QuestEditorData.quests[QuestEditorData.SelectedQuestIndex].order++;
-            QuestEditorData.quests[QuestEditorData.SelectedQuestIndex + 1].order--;
+            var questsHolder = QuestEditorData.SelectedQuestHolder;
+            AssetDatabase.SaveAssetIfDirty(questsHolder);
+            Undo.RecordObject(questsHolder, "quest moved down");
+
+            (QuestEditorData.quests[QuestEditorData.SelectedQuestIndex],
+                    QuestEditorData.quests[QuestEditorData.SelectedQuestIndex + 1]) =
+                (QuestEditorData.quests[QuestEditorData.SelectedQuestIndex + 1],
+                    QuestEditorData.quests[QuestEditorData.SelectedQuestIndex]);
+            
             QuestEditorData.SelectedQuestIndex++;
             QuestEditorWindow.RefreshData();
         }
@@ -108,19 +122,19 @@ namespace Editor.QuestsEditor
             // create asset
             var quest = ScriptableObject.CreateInstance<Quest>();
             quest.order = questsHolder.quests.Length;
-            
+
             // save asset
             var path = EditorUtility.SaveFilePanel(
-                "New Quest", 
+                "New Quest",
                 $"{questDir}",
-                $"Quest{questsHolder.quests.Length}.asset", 
+                $"Quest{questsHolder.quests.Length}.asset",
                 "asset");
             path = path.Replace(Application.dataPath, "Assets/");
-            if (string.IsNullOrWhiteSpace(path)) 
+            if (string.IsNullOrWhiteSpace(path))
                 return;
             AssetDatabase.CreateAsset(quest, path);
             AssetDatabase.Refresh();
-            
+
             // add quest to questHolder's list
             AssetDatabase.SaveAssetIfDirty(questsHolder);
             var serObj = new SerializedObject(questsHolder);
