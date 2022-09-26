@@ -12,17 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96f9776847643ef902ac7d5d31a1c47, type: 3}
   m_Name: new one
   m_EditorClassIdentifier: 
-  order: 1
+  order: 2
   isUnlockedAtFirst: 0
   title: new one
   description: the second one
-  location: {fileID: 0}
+  location: {fileID: 11400000, guid: fe061d5dac169cb4eab4e10f76795e70, type: 2}
   objectives:
-    CollectObjectives: []
+    CollectObjectives:
+    - collectible: {fileID: 11400000, guid: ce1530468d91c8c4cb267fe3e16e9629, type: 2}
+      amount: 16
     KillZombieObjectives: []
     DefendAPositionObjectives: []
   rewards:
-    CoinRewards: []
+    CoinRewards:
+    - CoinAmount: 330
     FeatureUnlockRewards: []
-    MaterialRewards: []
-    MissionUnlockRewards: []
+    MaterialRewards:
+    - MaterialName: Gloves
+    MissionUnlockRewards:
+    - unlockingQuest: {fileID: 11400000, guid: 62db92cb779cde141a97534cce8635ee, type: 2}

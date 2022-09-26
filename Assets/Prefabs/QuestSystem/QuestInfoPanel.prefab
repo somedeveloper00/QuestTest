@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.392}
+  m_Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -91,9 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a98422d4c7c4e3fa75aa15637be0022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  context: {fileID: 0}
   questTitle: {fileID: 6368529157619441509}
-  objectiveElementPrefab: {fileID: -4004624546718027582, guid: 6e4b07915d31d784eb7c85b38ccab233, type: 3}
+  objectiveElementsDict: {fileID: 11400000, guid: 49f0d422f7b060f46ba9c8372846c96d, type: 2}
   objectiveElementParent: {fileID: 6368529156246819504}
 --- !u!1 &6368529156246819505
 GameObject:

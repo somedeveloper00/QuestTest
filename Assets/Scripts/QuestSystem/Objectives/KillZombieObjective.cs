@@ -8,27 +8,20 @@ namespace QuestSystem
         [NonSerialized] public int killed;
         public int amount;
 
-        private Action _onUpdate, _onComplete;
-        private Context _context;
-
-        public override void Start(Context context, Action onUpdate, Action onComplete)
+        protected override void OnStart()
         {
-            _context = context;
-            context.zombieManager.onKill += Update;
-            _onUpdate += onUpdate;
-            _onComplete = onComplete;
+            context.zombieManager.onKill += OnKill;
         }
-        
-        void Update()
+
+        void OnKill()
         {
             killed++;
-            _onUpdate?.Invoke();
+            Update();
             if (killed >= amount)
             {
-                _onComplete?.Invoke();
-                _context.zombieManager.onKill -= Update;
+                Complete();
+                context.zombieManager.onKill -= OnKill;
             }
         }
-
     }
 }

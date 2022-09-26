@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace QuestSystem
 {
@@ -10,7 +11,7 @@ namespace QuestSystem
         
         public override void GetReward()
         {
-            // throw new NotImplementedException();
+            Debug.Log($"Got new material: {MaterialName}");
         }
 
     }

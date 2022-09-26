@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace QuestSystem
 {
@@ -7,27 +6,22 @@ namespace QuestSystem
     public class CollectObjective : Objective
     {
         public Collectible collectible;
-        public int collected;
         public int amount;
+        [NonSerialized] public int collected;
 
-        private Action _onUpdate, _onComplete;
-
-        public override void Start(Context context, Action onUpdate, Action onComplete)
+        protected override void OnStart()
         {
-            _onUpdate = onUpdate;
-            _onComplete = onComplete;
-            Update();
-            collectible.onCollect += Update;
+            collectible.onCollect += OnCollect;
         }
 
-        private void Update()
+        private void OnCollect()
         {
             collected++;
-            _onUpdate?.Invoke();
+            Update();
             if (collected >= amount)
             {
-                _onComplete?.Invoke();
-                collectible.onCollect -= Update;
+                Complete();
+                collectible.onCollect -= OnCollect;
             }
         }
     }

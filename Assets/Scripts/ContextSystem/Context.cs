@@ -6,4 +6,5 @@ public class Context : MonoBehaviour
 {
     public QuestManager questManager;
     public ZombieManager zombieManager;
+    public CollectibleManager collectibleManager;
 }

@@ -32,7 +32,7 @@ namespace QuestSystem
         {
             GetRewards();
             IsCompleted = true;
-            Database.Database.SaveData(this);
+            this.Save();
         }
 
         private void GetRewards()
@@ -43,7 +43,11 @@ namespace QuestSystem
             }
         }
 
-        public void Unlock() => IsUnlocked = true;
+        public void Unlock()
+        {
+            IsUnlocked = true;
+            this.Save();
+        }
 
         private void OnEnable()
         {
@@ -58,7 +62,6 @@ namespace QuestSystem
 
         void ISavableData.LoadFromDatabase(string data)
         {
-            Debug.Log(data);
             var obj = new { unlocked = false, completed = false };
             obj = JsonConvert.DeserializeAnonymousType(data, obj);
 

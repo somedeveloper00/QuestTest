@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace QuestSystem
 {
@@ -9,7 +10,7 @@ namespace QuestSystem
         public override string DisplayName => "Feature Unlock";
         public override void GetReward()
         {
-            // throw new NotImplementedException();
+            Debug.Log($"Got New Feature: {FeatureName}");
         }
 
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2f7f78a49942969fcaf8ddb866de2e, type: 3}
   m_Name: ObjectiveElementDict
   m_EditorClassIdentifier: 
-  defaultElement: {fileID: 0}
-  killZombiesObjectiveElement: {fileID: 0}
-  collectObjectiveElement: {fileID: 0}
-  defendAPositionObjectiveElement: {fileID: 0}
+  defaultElement: {fileID: -4004624546718027582, guid: 6e4b07915d31d784eb7c85b38ccab233, type: 3}
+  killZombiesObjectiveElement: {fileID: 6941227202228125398, guid: 8d83ce39d8f32f84796391ecdc2773f8, type: 3}
+  collectObjectiveElement: {fileID: 495900108554078479, guid: 43c338c23bbf3c544938693fcdf4c8a4, type: 3}
+  defendAPositionObjectiveElement: {fileID: 7415147773421073472, guid: 81c7435cd2397c84a860d49ff269bd0d, type: 3}

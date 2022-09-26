@@ -13,7 +13,8 @@ namespace UI.QuestInfoPanel
         public virtual void Init(Context context, Objective objective)
         {
             this.objective = objective;
-            objective.Start(context, OnUpdate, OnComplete);
+            objective.AddOnComplete(OnComplete);
+            objective.AddOnUpdate(OnUpdate);
             OnUpdate();
         }
 
@@ -24,7 +25,8 @@ namespace UI.QuestInfoPanel
         
         protected virtual void OnComplete()
         {
-            canvasGroup.alpha = 0.5f;
+            if(canvasGroup != null)
+                canvasGroup.alpha = 0.5f;
         }
     }
 }

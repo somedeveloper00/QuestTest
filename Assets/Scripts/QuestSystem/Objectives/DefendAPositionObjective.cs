@@ -5,10 +5,16 @@ namespace QuestSystem
     [Serializable]
     public class DefendAPositionObjective : Objective
     {
-        public override void Start(Context context, Action onUpdate, Action onComplete)
+        protected override void OnStart()
         {
-            
+            SampleFlow.OnDefendPlace += OnDefend;
         }
 
+        private void OnDefend()
+        {
+            Update();
+            Complete();
+            SampleFlow.OnDefendPlace -= OnDefend;
+        }
     }
 }

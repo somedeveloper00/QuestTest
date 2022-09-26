@@ -13,17 +13,13 @@ namespace UI.QuestInfoPanel
 
         public ObjectiveElement GetElementPrefab(Objective objective)
         {
-            switch (objective)
+            return objective switch
             {
-                case CollectObjective collectObjective:
-                    return collectObjectiveElement;
-                case DefendAPositionObjective defendAPositionObjective:
-                    return defendAPositionObjectiveElement;
-                case KillZombieObjective killZombieObjective:
-                    return killZombiesObjectiveElement;
-                default:
-                    return defaultElement;
-            }
+                CollectObjective => collectObjectiveElement,
+                DefendAPositionObjective => defendAPositionObjectiveElement,
+                KillZombieObjective => killZombiesObjectiveElement,
+                _ => defaultElement
+            };
         }
     }
 }

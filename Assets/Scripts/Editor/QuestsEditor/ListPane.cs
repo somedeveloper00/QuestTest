@@ -44,11 +44,11 @@ namespace Editor.QuestsEditor
                 }
             }
 
+            if (GUILayout.Button("New Quest")) CreateNewQuest();
+
+
             using (new EditorGUI.DisabledScope(QuestEditorData.quests == null))
             {
-                if (GUILayout.Button("New Quest")) CreateNewQuest();
-
-
                 using (new EditorGUI.DisabledScope(QuestEditorData.quests?.Length == 0))
                 {
                     if (GUILayout.Button("Remove Selected Quest")) DeleteSelectedQuest();
@@ -160,20 +160,23 @@ namespace Editor.QuestsEditor
 
         private void DrawQuestsList()
         {
-            var buttonStyle =
-                DynamicStyles.LeftAlignedOf(
-                    DynamicStyles.WordWrapOf(
-                        DynamicStyles.RichTextOf(GUI.skin.button)));
-
             QuestEditorData.SelectedQuestHolderIndex =
                 EditorGUILayout.Popup(
                     QuestEditorData.SelectedQuestHolderIndex,
                     QuestEditorData.questsHolders.Select(qh => qh.name).ToArray()
                 );
+            
 
             GUILayout.Space(2);
 
+            
             if (QuestEditorData.quests != null)
+            {
+                var buttonStyle =
+                    DynamicStyles.LeftAlignedOf(
+                        DynamicStyles.WordWrapOf(
+                            DynamicStyles.RichTextOf(GUI.skin.button)));
+            
                 using (var scroll = new GUILayout.ScrollViewScope(listPos, GUILayout.ExpandHeight(true)))
                 {
                     var quests = QuestEditorData.quests;
@@ -195,6 +198,7 @@ namespace Editor.QuestsEditor
 
                     listPos = scroll.scrollPosition;
                 }
+            }
         }
     }
 }

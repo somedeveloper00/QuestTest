@@ -15,14 +15,13 @@ MonoBehaviour:
   order: 0
   isUnlockedAtFirst: 1
   title: first one
-  description: The first quest
+  description: The first quest. you'll learn basic stuff
   location: {fileID: 11400000, guid: fe061d5dac169cb4eab4e10f76795e70, type: 2}
   objectives:
     CollectObjectives:
-    - collectible: Mushrooms
-      amount: 25
-    KillZombieObjectives:
-    - amount: 100
+    - collectible: {fileID: 11400000, guid: ce1530468d91c8c4cb267fe3e16e9629, type: 2}
+      amount: 12
+    KillZombieObjectives: []
     DefendAPositionObjectives: []
   rewards:
     CoinRewards:

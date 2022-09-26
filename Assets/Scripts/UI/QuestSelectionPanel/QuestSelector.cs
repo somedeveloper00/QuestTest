@@ -9,15 +9,15 @@ namespace UI.QuestSelectionPanel
     {
         public Quest[] quests { get; private set; }
 
-        public Context context;
+        [NonSerialized] public Context context;
         public QuestElement questElementSample;
         public Transform questListParent;
-
         public DetailsPane detailsPane;
 
         private QuestElement[] questElements { get; set; }
-
+        
         public event Action onQuestStart;
+        
 
         public void Init(Context context)
         {
@@ -40,14 +40,14 @@ namespace UI.QuestSelectionPanel
         {
             if (element == null || !questElements.Contains(element))
             {
-                Debug.LogWarning($"Selecting quest element is not valid!");
+                Debug.LogWarning("Selecting quest element is not valid!");
                 return;
             }
 
             detailsPane.Show(element.quest);
             foreach (var q in questElements)
             {
-                if(ReferenceEquals(q, element)) continue;
+                if (ReferenceEquals(q, element)) continue;
                 q.UnSelect();
             }
         }

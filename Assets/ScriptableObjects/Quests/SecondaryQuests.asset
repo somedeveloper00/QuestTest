@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a4431ae5714acc9653f9dece78da8b, type: 3}
+  m_Name: SecondaryQuests
+  m_EditorClassIdentifier: 
+  quests:
+  - {fileID: 11400000, guid: 42bc833d36af46b4f9b97ce4447d5deb, type: 2}
+  - {fileID: 11400000, guid: e4b9c65eb7f6baf44a0e004c65169158, type: 2}

@@ -15,7 +15,7 @@ namespace Editor.QuestsEditor
         {
             get
             {
-                selectedQuestHolderIndex = Mathf.Clamp(selectedQuestHolderIndex, 0, questsHolders.Length);
+                selectedQuestHolderIndex = Mathf.Clamp(selectedQuestHolderIndex, 0, questsHolders.Length - 1);
                 return selectedQuestHolderIndex;
             }
             set
@@ -25,7 +25,7 @@ namespace Editor.QuestsEditor
             }
         }
 
-        public static Quest[] quests => questsHolders?[SelectedQuestHolderIndex].quests;
+        public static Quest[] quests => SelectedQuestHolder?.quests;
 
         private static int selectedQuestIndex = 0;
 
@@ -34,7 +34,7 @@ namespace Editor.QuestsEditor
             get => selectedQuestIndex;
             set
             {
-                value = Mathf.Clamp(value, 0, quests?.Length ?? 0);
+                value = Mathf.Clamp(value, 0, quests?.Length - 1 ?? 0);
                 selectedQuestIndex = value;
             }
         }

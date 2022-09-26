@@ -10,7 +10,7 @@ namespace QuestSystem
     [CreateAssetMenu(fileName = "Quests Holder", menuName = "SampleTest/Quests Holder", order = 0)]
     public class QuestsHolder : ScriptableObject
     {
-        public Quest[] quests;
+        public Quest[] quests = Array.Empty<Quest>();
 
         private void OnValidate()
         {
@@ -20,9 +20,9 @@ namespace QuestSystem
             }
         }
 
-        public void SyncAll()
+        public void LoadAll()
         {
-            foreach (var quest in quests) quest.Sync();
+            foreach (var quest in quests) quest.Load();
         }
     }
 }

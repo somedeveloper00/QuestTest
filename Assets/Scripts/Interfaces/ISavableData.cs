@@ -13,6 +13,7 @@
 
     public static class ISavableExtentions
     {
-        public static void Sync(this ISavableData savableData) => Database.Database.LoadData(savableData);
+        public static void Load(this ISavableData savableData) => Database.Database.LoadData(savableData);
+        public static void Save(this ISavableData savableData) => Database.Database.SaveData(savableData);
     }
 }

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Collectible", menuName = "SampleTest/Collectible", order = 0)]
-public abstract class Collectible : ScriptableObject
+public class Collectible : ScriptableObject
 {
     public string displayName;
     public Sprite icon;

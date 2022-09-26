@@ -16,9 +16,11 @@ MonoBehaviour:
   isUnlockedAtFirst: 1
   title: another possible
   description: some other first quest possibles
-  location: {fileID: 11400000, guid: 75698ff46aa35b84ba8ddc3669cf976d, type: 2}
+  location: {fileID: 11400000, guid: fe061d5dac169cb4eab4e10f76795e70, type: 2}
   objectives:
-    CollectObjectives: []
+    CollectObjectives:
+    - collectible: {fileID: 11400000, guid: ab5633b62b266874ab7db4c35db1a67b, type: 2}
+      amount: 6
     KillZombieObjectives: []
     DefendAPositionObjectives: []
   rewards:
@@ -27,4 +29,4 @@ MonoBehaviour:
     FeatureUnlockRewards: []
     MaterialRewards: []
     MissionUnlockRewards:
-    - unlockingQuest: {fileID: 11400000, guid: 52f387e0537346645b74f744768dbf9d, type: 2}
+    - unlockingQuest: {fileID: 11400000, guid: e4472b8c715a0ac43b51d7b9da7121a0, type: 2}

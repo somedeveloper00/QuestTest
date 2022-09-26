@@ -11,7 +11,7 @@ namespace UI.QuestSelectionPanel
     {
         [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text descText;
-        [SerializeField] private RewardIconElement rewardIconElementSample;
+        [SerializeField] private RewardIconsDict rewardIconsDict;
         [SerializeField] private Transform rewardIconsParent;
 
         private RewardIconElement[] _rewardIconElements;
@@ -39,7 +39,8 @@ namespace UI.QuestSelectionPanel
             _rewardIconElements = new RewardIconElement[rewards.Length];
             for (var i = 0; i < rewards.Length; i++)
             {
-                _rewardIconElements[i] = Instantiate(rewardIconElementSample, rewardIconsParent);
+                var iconPrefab = rewardIconsDict.GetElementPrefab(rewards[i]);
+                _rewardIconElements[i] = Instantiate(iconPrefab, rewardIconsParent);
                 _rewardIconElements[i].Init(rewards[i]);
             }
         }

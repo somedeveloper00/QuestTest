@@ -22,6 +22,7 @@ namespace Editor.QuestsEditor
         {
             listPane = new ListPane(this);
             selectedQuestInfoPane = new SelectedQuestInfoPane(this);
+            RefreshData();
         }
 
         public ListPane listPane;

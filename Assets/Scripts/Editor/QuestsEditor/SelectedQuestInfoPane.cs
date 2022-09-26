@@ -9,7 +9,8 @@ namespace Editor.QuestsEditor
         
         private Vector2 questPos = new Vector2();
         private UnityEditor.Editor currentEditor;
-        private int currentDrawingindex = -1;
+        private int currentQuestDrawingindex = -1;
+        private int currentHolderDrawingindex = -1;
         
         public SelectedQuestInfoPane(QuestEditorWindow window)
         {
@@ -30,11 +31,11 @@ namespace Editor.QuestsEditor
                     if(QuestEditorData.quests == null || QuestEditorData.quests?.Length <= QuestEditorData.SelectedQuestIndex)
                         return;
                     
-                    if (currentEditor == null || QuestEditorData.SelectedQuestIndex != currentDrawingindex)
+                    if (EditorNeedsReInit())
                     {
                         UnityEditor.Editor.CreateCachedEditor(
                             QuestEditorData.quests[QuestEditorData.SelectedQuestIndex], null, ref currentEditor);
-                        currentDrawingindex = QuestEditorData.SelectedQuestIndex;
+                        currentQuestDrawingindex = QuestEditorData.SelectedQuestIndex;
                     }
 
                     currentEditor.OnInspectorGUI();
@@ -42,6 +43,13 @@ namespace Editor.QuestsEditor
                 
                 questPos = scroll.scrollPosition;
             }
+        }
+
+        private bool EditorNeedsReInit()
+        {
+            return currentEditor == null || 
+                   QuestEditorData.SelectedQuestIndex != currentQuestDrawingindex ||
+                   QuestEditorData.SelectedQuestHolderIndex != currentHolderDrawingindex;
         }
     }
 }

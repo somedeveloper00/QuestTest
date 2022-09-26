@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc13343b842649ac886d81e0e1364188, type: 3}
+  m_Name: RewardIconDic
+  m_EditorClassIdentifier: 
+  coinIcon: {fileID: -990536488611982740, guid: ad909130aeba1bd41bd265482ae103db, type: 3}
+  featureIcon: {fileID: -990536488611982740, guid: f362ac4bc64814941a7d48596e9b5764, type: 3}
+  materialIcon: {fileID: -990536488611982740, guid: 5bc3db10893e8b145a4c407cee8051a7, type: 3}
+  questIcon: {fileID: -990536488611982740, guid: 78b65a804ff62894d926b67ac7967fb3, type: 3}

@@ -1,4 +1,5 @@
-﻿using UI.QuestInfoPanel;
+﻿using System;
+using UI.QuestInfoPanel;
 using UI.QuestSelectionPanel;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class SampleFlow : MonoBehaviour
     public GameObject questSelectorButton;
     public Transform UI;
 
+    public static event Action OnDefendPlace;
     private QuestInfoPanel _questInfoPanel;
         
     public void OpenQuestSelector()
@@ -26,13 +28,21 @@ public class SampleFlow : MonoBehaviour
         completeQuestButton.SetActive(true);
         _questInfoPanel = Instantiate(questInfoPanelPrefab, UI);
         _questInfoPanel.Init(context);
+        context.questManager.OnQuestComplete += OnCompleteQuest;
     }
 
-    public void CompleteQuest()
+    public void OnCompleteQuest()
     {
         Destroy(_questInfoPanel.gameObject);
         completeQuestButton.SetActive(false);
-        context.questManager.CompleteCurrentQuest();
         questSelectorButton.SetActive(true);
+
+        context.questManager.OnQuestComplete -= OnCompleteQuest;
+    }
+
+
+    public void DefendPlace()
+    {
+        OnDefendPlace?.Invoke();
     }
 }
